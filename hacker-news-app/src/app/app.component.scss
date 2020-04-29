@@ -1,0 +1,30 @@
+.wrapper {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    justify-content: center;
+    display: flex;
+}
+
+.layout {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    a {
+        text-decoration: none;
+        color: black;
+        font-weight: bolder;
+    }
+    a:hover {
+        color: white;
+    }
+}
+
+header {
+    background-color: rgb(255, 102, 0);
+    padding: 5px;
+}
+
+.content {
+    background-color: rgb(254, 245, 231);
+    color: rgb(23, 32, 42);
+    padding-top: 10px;
+}
