@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StoryListComponent } from './story-list/story-list-component';
+import { StoryListComponent } from './stories/story-list/story-list-component';
 
 const routes: Routes = [
   { path: '', component: StoryListComponent }

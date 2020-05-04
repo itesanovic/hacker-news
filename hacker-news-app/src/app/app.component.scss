@@ -1,5 +1,6 @@
 .wrapper {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
     justify-content: center;
     display: flex;
 }
@@ -12,14 +13,19 @@
         text-decoration: none;
         color: black;
         font-weight: bolder;
+        margin-left: 5px;
     }
     a:hover {
         color: white;
     }
+    img {
+        height: 20px;
+    }
 }
 
 header {
-    background-color: rgb(255, 102, 0);
+    display: flex;
+    background-color: rgb(230, 126, 34);
     padding: 5px;
 }
 
