@@ -34,3 +34,15 @@ header {
     color: rgb(23, 32, 42);
     padding-top: 10px;
 }
+
+footer {
+    background-color: rgb(254, 245, 231);
+    padding-bottom: 5px;
+    div {
+        justify-content: center;
+        display: flex;
+    }
+    hr {
+        border: 1px solid rgb(230, 126, 34);;
+    }
+}
