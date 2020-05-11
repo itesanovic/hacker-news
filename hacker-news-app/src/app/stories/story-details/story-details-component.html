@@ -1,3 +1,7 @@
 <div *ngIf="story$ | async as story" class="details-wrapper">
   <story-title [story]="story"></story-title>
+  <div class="add-comment">
+    <textarea rows="10" cols="50"></textarea>
+    <button>add comment</button>
+  </div>
 </div>

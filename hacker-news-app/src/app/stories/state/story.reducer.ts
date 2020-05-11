@@ -5,13 +5,13 @@ export const storyFeatureKey = 'stories';
 
 export interface StoryState {
   stories: any[];
-  currentStoryId: string;
+  currentStory: any;
   error: string;
 }
 
 const initialState = {
   stories: [],
-  currentStoryId: null,
+  currentStory: null,
   error: '',
 };
 
@@ -26,7 +26,12 @@ export const getTopStories = createSelector(
 
 export const getCurrentStory = createSelector(
   getFeatureStateSelector,
-  (state, props) => state.stories.find(story => story.id == props.id)
+  state => state.currentStory
+)
+
+export const getError = createSelector(
+  getFeatureStateSelector,
+  state => state.error
 )
 
 const storyReducer = createReducer(
@@ -40,6 +45,10 @@ const storyReducer = createReducer(
     ...state,
     stories: [],
     error: props.error,
+  })),
+  on(storyActions.LoadCurrentStorySuccess, (state, props) => ({
+    ...state,
+    currentStory: props.story
   }))
 );
 

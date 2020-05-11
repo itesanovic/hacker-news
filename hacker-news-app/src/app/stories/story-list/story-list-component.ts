@@ -12,14 +12,25 @@ import { storiesPerPage } from 'src/app/constants';
 })
 export class StoryListComponent implements OnInit {
   readonly storiesPerPage = storiesPerPage;
-  currentPage = 0; //TODO: get page from url params
+  currentPage = 0;
 
   stories$: Observable<any[]>;
+  errorMessage$: Observable<string>;
 
   constructor(private store: Store<fromStoryReducer.StoryState>) {}
 
   ngOnInit() {
-    this.store.dispatch(fromStoryActions.Load());
+    this.loadStories();
     this.stories$ = this.store.pipe(select(fromStoryReducer.getTopStories));
+    this.errorMessage$ = this.store.pipe(select(fromStoryReducer.getError));
+  }
+
+  loadStories() {
+    this.store.dispatch(fromStoryActions.Load({ page: this.currentPage }));
+  }
+
+  loadMore() {
+    this.currentPage++;
+    this.loadStories();
   }
 }

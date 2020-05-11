@@ -3,5 +3,6 @@
     <span class="index">{{currentPage * storiesPerPage + i + 1}}.</span>
     <story-title [story]="story"></story-title>
   </div>
-  <a *ngIf="stories.length" href="javascript:" class="nav-link">More</a>
+  <button *ngIf="stories.length" class="nav-link" (click)="loadMore()">More</button>
 </div>
+<div class="error-message">{{errorMessage$ | async}}</div>
