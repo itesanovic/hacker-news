@@ -1,0 +1,48 @@
+.story-wrapper {
+  margin: 0 0 10px 10px;
+  display: flex;
+
+  .index {
+    color: grey;
+  }
+
+  .main-story {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: spa;
+
+    a {
+      text-decoration: none;
+    }
+
+    div a {
+      color: black;
+    }
+  }
+
+  .details {
+    color: grey;
+    font-size: x-small;
+  }
+
+  .details.story {
+    margin-top: 2px;
+    
+    a {
+      color: grey;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .details.url {
+    margin-left: 5px;
+  }
+}
+
+button {
+  margin-left: 35px;
+}

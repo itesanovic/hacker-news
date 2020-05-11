@@ -1,9 +1,9 @@
-import { Actions, createEffect, ofType, Effect } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { StoriesService } from '../stories.service';
+import { mergeMap, catchError, map, flatMap, zip, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 import * as fromStoryActions from './story.actions';
-import { mergeMap, catchError, map } from 'rxjs/operators';
-import { EMPTY, of } from 'rxjs';
 
 @Injectable()
 export class StoryEffect {
@@ -12,8 +12,12 @@ export class StoryEffect {
 
     stories$ = createEffect(() => this.actions$.pipe(
         ofType(fromStoryActions.StoryActionTypes.Load),
-        mergeMap(() => this.storiesService.loadStories().pipe(
+        mergeMap((payload) => this.storiesService.loadTopStories(0).pipe(
             map(data => fromStoryActions.LoadSuccess({ stories: data })),
             catchError(error => of(fromStoryActions.LoadFail({ error: error })))
         ))));
+
+    // stories$ = this.actions$.pipe(
+    //     ofType(fromStoryActions.StoryActionTypes.Load),
+    //     mergeMap(() => from(this.storiesService.loadTopStories(0))));
 }

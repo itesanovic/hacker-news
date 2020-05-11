@@ -1,18 +1,35 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, EMPTY } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, mergeMap, take, skip, filter, toArray } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { storiesPerPage } from '../constants';
+import { throwError } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class StoriesService {
-    constructor(private http: HttpClient) { }
+  readonly hackerNewsUrl = 'https://hacker-news.firebaseio.com/v0';
+  readonly jsonExtension = '.json';
 
-    public loadStories(): Observable<any> {
-        console.log('Loading stories from service...');
-        return this.http.get('https://hacker-news.firebaseio.com/v0/topstories.json').pipe(
-            catchError(error => throwError(error))
-        );
-    }
+  constructor(private http: HttpClient) {}
+
+  public loadTopStories(page: number) {
+    return this.http
+      .get<any>(`${this.hackerNewsUrl}/topstories${this.jsonExtension}`)
+      .pipe(
+        mergeMap((data) => data),
+        mergeMap((id) => this.loadDetails(id)),
+        filter((data) => !data['deleted'] || !data['dead']),
+        skip(page * storiesPerPage),
+        take(storiesPerPage),
+        toArray(),
+        catchError((error) => throwError(error))
+      );
+  }
+
+  public loadDetails(id: any) {
+    return this.http
+      .get(`${this.hackerNewsUrl}/item/${id}${this.jsonExtension}`)
+      .pipe(catchError((error) => throwError(error)));
+  }
 }

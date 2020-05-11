@@ -1,0 +1,1 @@
+export const storiesPerPage = 30;
