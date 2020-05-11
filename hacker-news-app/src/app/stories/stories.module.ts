@@ -6,15 +6,19 @@ import * as fromStories from './state/story.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { StoryEffect } from './state/story.effect';
 import { CommonModule } from '@angular/common';
+import { StoryDetailsComponent } from './story-details/story-details-component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
     imports: [
         CommonModule,
+        AppRoutingModule,
         StoreModule.forFeature(fromStories.storyFeatureKey, fromStories.reducer),
         EffectsModule.forFeature([StoryEffect])
     ],
     declarations: [
-        StoryListComponent
+        StoryListComponent,
+        StoryDetailsComponent
     ]
 })
 export class StoriesModule { }

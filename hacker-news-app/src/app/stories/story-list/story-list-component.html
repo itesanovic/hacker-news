@@ -7,14 +7,14 @@
         <span class="url details">({{prepareUrl(story.url)}})</span>
       </div>
       <div *ngIf="!story.url">
-        <a href="javascript:">{{story.title}}</a>
+        <a [routerLink]="['/story', story.id]">{{story.title}}</a>
       </div>
       <span class="story details"
         >{{story.score}} points by {{story.by}} {{prepareTime(story.time)}}
         {{prepareTime(story.time) === 1 ? 'hour' : 'hours'}} ago |
-        <a href="javascript:">{{story.descendants}} comments</a>
+        <a [routerLink]="['/story', story.id]">{{story.descendants}} comments</a>
       </span>
     </div>
   </div>
-  <button (click)="loadStories(1)">More</button>
+  <a href="javascript:" class='nav-link'>More</a>
 </div>

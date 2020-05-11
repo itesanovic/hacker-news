@@ -15,8 +15,8 @@ export class StoryEffect {
   stories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromStoryActions.StoryActionTypes.Load),
-      mergeMap((payload) =>
-        this.storiesService.loadTopStories(0).pipe(
+      mergeMap(() =>
+        this.storiesService.loadTopStories(0).pipe( //TODO: pass page number through action.payload
           map((data) => fromStoryActions.LoadSuccess({ stories: data })),
           catchError((error) => of(fromStoryActions.LoadFail({ error: error })))
         )

@@ -24,9 +24,11 @@ export class StoryListComponent implements OnInit {
 
   ngOnInit() {
     this.service.loadTopStories(0);
+    
     this.store.dispatch(
       fromStoryActions.Load({ pageNumber: this.currentPage })
     );
+    
     this.loadStories(this.currentPage);
   }
 
