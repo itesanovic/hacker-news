@@ -4,7 +4,6 @@ import * as fromStoryReducer from '../state/story.reducer';
 import * as fromStoryActions from '../state/story.actions';
 import { Observable } from 'rxjs';
 import { storiesPerPage } from 'src/app/constants';
-import { StoriesService } from '../stories.service';
 
 @Component({
   selector: 'story-list',
@@ -17,22 +16,10 @@ export class StoryListComponent implements OnInit {
 
   stories$: Observable<any[]>;
 
-  constructor(
-    private store: Store<fromStoryReducer.StoryState>,
-    private service: StoriesService
-  ) {}
+  constructor(private store: Store<fromStoryReducer.StoryState>) {}
 
   ngOnInit() {
-    this.service.loadTopStories(0);
-    
-    this.store.dispatch(
-      fromStoryActions.Load({ pageNumber: this.currentPage })
-    );
-    
-    this.loadStories(this.currentPage);
-  }
-
-  loadStories(number) {
+    this.store.dispatch(fromStoryActions.Load());
     this.stories$ = this.store.pipe(select(fromStoryReducer.getTopStories));
   }
 

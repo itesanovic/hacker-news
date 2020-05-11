@@ -6,10 +6,7 @@ export enum StoryActionTypes {
   LoadFail = '[Stories] Load Fail',
 }
 
-export const Load = createAction(
-  StoryActionTypes.Load,
-  props<{ pageNumber: number }>()
-);
+export const Load = createAction(StoryActionTypes.Load);
 
 export const LoadSuccess = createAction(
   StoryActionTypes.LoadSuccess,

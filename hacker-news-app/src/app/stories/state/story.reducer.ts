@@ -21,8 +21,13 @@ const getFeatureStateSelector = createFeatureSelector<StoryState>(
 
 export const getTopStories = createSelector(
   getFeatureStateSelector,
-  (state, props) => state.stories
+  state => state.stories
 );
+
+export const getCurrentStory = createSelector(
+  getFeatureStateSelector,
+  (state, props) => state.stories.find(story => story.id == props.id)
+)
 
 const storyReducer = createReducer(
   initialState,
