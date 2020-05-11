@@ -1,20 +1,7 @@
 <div *ngIf="stories$ | async as stories">
   <div *ngFor="let story of stories; index as i" class="story-wrapper">
     <span class="index">{{currentPage * storiesPerPage + i + 1}}.</span>
-    <div class="main-story">
-      <div *ngIf="story.url">
-        <a target="_blank" href="{{story.url}}">{{story.title}}</a>
-        <span class="url details">({{prepareUrl(story.url)}})</span>
-      </div>
-      <div *ngIf="!story.url">
-        <a>{{story.title}}</a>
-      </div>
-      <span class="story details"
-        >{{story.score}} points by {{story.by}} {{prepareTime(story.time)}}
-        {{prepareTime(story.time) === 1 ? 'hour' : 'hours'}} ago |
-        <a>{{story.descendants}} comments</a>
-      </span>
-    </div>
+    <story-title [story]="story"></story-title>
   </div>
-  <a href="javascript:" class='nav-link'>More</a>
+  <a *ngIf="stories.length" href="javascript:" class="nav-link">More</a>
 </div>

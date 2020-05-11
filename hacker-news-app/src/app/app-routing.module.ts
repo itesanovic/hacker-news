@@ -4,12 +4,13 @@ import { StoryListComponent } from './stories/story-list/story-list-component';
 import { StoryDetailsComponent } from './stories/story-details/story-details-component';
 
 const routes: Routes = [
-  { path: '', component: StoryListComponent },
-  { path: 'story/:id', component: StoryDetailsComponent }
+  { path: '', redirectTo: 'stories', pathMatch: 'full' },
+  { path: 'stories', component: StoryListComponent },
+  { path: 'stories/:id', component: StoryDetailsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

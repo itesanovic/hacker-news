@@ -22,16 +22,4 @@ export class StoryListComponent implements OnInit {
     this.store.dispatch(fromStoryActions.Load());
     this.stories$ = this.store.pipe(select(fromStoryReducer.getTopStories));
   }
-
-  prepareUrl(url: string) {
-    return url
-      ?.replace('http://', '')
-      .replace('https://', '')
-      .replace('www.', '')
-      .split(/[/?#]/)[0];
-  }
-
-  prepareTime(date: number) {
-    if (date) return new Date(date * 1000).getHours();
-  }
 }

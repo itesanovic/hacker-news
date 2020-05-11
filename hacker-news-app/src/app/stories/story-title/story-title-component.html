@@ -1,0 +1,14 @@
+<div class="main-story">
+  <div *ngIf="story.url">
+    <a target="_blank" href="{{story.url}}">{{story.title}}</a>
+    <span class="url details">({{prepareUrl(story.url)}})</span>
+  </div>
+  <div *ngIf="!story.url">
+    <a [routerLink]="['/stories', story.id]">{{story.title}}</a>
+  </div>
+  <span class="story details"
+    >{{story.score}} points by {{story.by}} {{prepareTime(story.time)}}
+    {{prepareTime(story.time) === 1 ? 'hour' : 'hours'}} ago |
+    <a [routerLink]="['/stories', story.id]">{{story.descendants}} comments</a>
+  </span>
+</div>

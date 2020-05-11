@@ -1,0 +1,30 @@
+.main-story {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  a {
+    text-decoration: none;
+    color: grey;
+  }
+
+  div a {
+    color: black;
+  }
+}
+
+.details {
+  color: grey;
+  font-size: x-small;
+}
+
+.details.story {
+  margin-top: 2px;
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.details.url {
+  margin-left: 5px;
+}
